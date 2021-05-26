@@ -8,6 +8,8 @@ import time
 import spinup.algos.pytorch.sac.core as core
 from spinup.utils.logx import EpochLogger
 
+from spinup.utils.wandb_utils import log_current_row_to_wandb
+
 
 class ReplayBuffer:
     """
@@ -345,6 +347,7 @@ def sac(env_fn, actor_critic=core.MLPActorCritic, ac_kwargs=dict(), seed=0,
             logger.log_tabular('LossPi', average_only=True)
             logger.log_tabular('LossQ', average_only=True)
             logger.log_tabular('Time', time.time()-start_time)
+            log_current_row_to_wandb(logger.log_current_row)
             logger.dump_tabular()
 
 if __name__ == '__main__':
