@@ -31,5 +31,7 @@ ddpg(
     steps_per_epoch=1000,
     epochs=200,
     logger_kwargs=logger_kwargs,
-    max_ep_len=160
+    max_ep_len=160,
+    q_lr=3e-4,
+    pi_lr=3e-4
 )
