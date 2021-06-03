@@ -15,6 +15,7 @@ import os.path as osp, time, atexit, os
 import warnings
 from spinup.utils.mpi_tools import proc_id, mpi_statistics_scalar
 from spinup.utils.serialization_utils import convert_json
+import wandb
 
 color2num = dict(
     gray=30,
@@ -76,7 +77,7 @@ class Logger:
     state of a training run, and the trained model.
     """
 
-    def __init__(self, output_dir=None, output_fname='progress.txt', exp_name=None):
+    def __init__(self, output_dir=wandb.run.dir, output_fname='progress.txt', exp_name=None):
         """
         Initialize a Logger.
 
