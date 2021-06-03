@@ -9,7 +9,7 @@ import torch.nn as nn
 wandb.init(
     project=os.getenv('OFFPCC_WANDB_PROJECT'),
     entity=os.getenv('OFFPCC_WANDB_ENTITY'),
-    group=f"car-v0 ddpg (spinup)",
+    group=f"car-concat20-v0 ddpg (spinup)",
     settings=wandb.Settings(_disable_stats=True),
     name=f'run_id=1',
     reinit=True
