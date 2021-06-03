@@ -7,12 +7,14 @@ from domains import *
 import torch.nn as nn
 import numpy as np
 
+seed = np.random.randint(999999)
+
 wandb.init(
     project=os.getenv('OFFPCC_WANDB_PROJECT'),
     entity=os.getenv('OFFPCC_WANDB_ENTITY'),
     group=f"car-concat20-v0 ddpg (spinup)",
     settings=wandb.Settings(_disable_stats=True),
-    name=f'run_id=1',
+    name=f'run_id={seed}',
     reinit=True
 )
 
@@ -23,7 +25,6 @@ ac_kwargs = dict(hidden_sizes=[256, 256, 256], activation=nn.ReLU)
 
 logger_kwargs = dict(output_dir='data/car_ddpg', exp_name='car_ddgp')
 
-seed = np.random.randint(999999)
 
 ddpg(
     env_fn=lambda: gym.make('car-concat20-v0'),
