@@ -5,6 +5,7 @@ import os
 sys.path.append("../off-policy-continuous-control/offpcc")
 from domains import *
 import torch.nn as nn
+import numpy as np
 
 wandb.init(
     project=os.getenv('OFFPCC_WANDB_PROJECT'),
@@ -22,6 +23,8 @@ ac_kwargs = dict(hidden_sizes=[256, 256, 256], activation=nn.ReLU)
 
 logger_kwargs = dict(output_dir='data/car_ddpg', exp_name='car_ddgp')
 
+seed = np.random.randint(999999)
+
 ddpg(
     env_fn=lambda: gym.make('car-concat20-v0'),
     ac_kwargs=ac_kwargs,
@@ -33,5 +36,8 @@ ddpg(
     logger_kwargs=logger_kwargs,
     max_ep_len=160,
     q_lr=3e-4,
-    pi_lr=3e-4
+    pi_lr=3e-4,
+    seed=seed
 )
+
+print('Seed used:', seed)

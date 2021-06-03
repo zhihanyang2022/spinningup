@@ -26,6 +26,7 @@ class MLPActor(nn.Module):
         super().__init__()
         pi_sizes = [obs_dim] + list(hidden_sizes) + [act_dim]
         self.pi = mlp(pi_sizes, activation, nn.Tanh)
+        print(self.pi)
         self.act_limit = act_limit
 
     def forward(self, obs):
